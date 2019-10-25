@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="../stylus/reset.css">
+  <link rel="stylesheet" href="../lib/jstree/themes/default/style.min.css">
+  <link rel="stylesheet" href="../stylus/copy_index.css">
+</head>
+<body>
+<div class="main">
+  <div class="main-wrapper">
+    <div class="tree-container">
+      <div class="tree-inner" id="tree">
+      </div>
+    </div>
+  </div>
+  <div class="map-container">
+
+  </div>
+</div>
+</div>
+<!--!!!需更换本地jquery库-->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script defer>
+  var treeDate = {
+    name: 'base',
+    id: '0',
+    children: [
+      {
+        name: 'grand 1',
+        id: '1',
+        children: [
+          {
+            name: 'parent 1-1',
+            id: '1-1',
+            children: [
+              {
+                name: 'child 1-1-1',
+                id: '1-1-1'
+              },
+              {
+                name: 'child 1-1-2',
+                id: '1-1-2',
+                children: [
+                  {
+                    name: 'grand child 1-1-2-1',
+                    id: '1-1-2-1'
+                  },
+                  {
+                    name: 'grand child 1-1-2-2',
+                    id: '1-1-2-2'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            name: 'parent 1-2',
+            id: '1-2',
+            children: [
+              {
+                name: 'child 1-2-1',
+                id: '1-2-1'
+              },
+              {
+                name: 'child 1-2-2',
+                id: '1-2-2'
+              }
+            ]
+          }
+        ]
+      },
+      { name: 'grand 2', id: '2' },
+      { name: 'grand 3', id: '3' }
+    ]
+  }
+
+
+  var recursive = function (obj, ele) {
+    // 展开标识
+
+    var reBox = function (mark) {
+      return '<div class=\'' + mark + 'box\'></div>'
+    }
+
+    var showflag = true
+    // 展开传入对象基础层级
+    ele.append('<div class=\'' + obj.id + 'name\'><div class=\'' + obj.id + 'btn\'>' + obj.name + '</div>' + reBox(obj.id) + '</div>')
+    $('.' + obj.id + 'btn').click(function (e) {
+      changeRightView(obj.id)
+    })
+    if (obj.children) {
+      for (let i = 0; i < obj.children.length; i++) {
+        // 为对象创建子项目标签
+        obj.children[i].show = true
+        recursive(obj.children[i], $('.' + obj.id + 'box'))
+      }
+      $('.' + obj.id + 'btn').click(function (e) {
+        // if (obj.children[0].show) {
+        //   $('.' + obj.id + 'box').animate({
+        //     height: '0'
+        //   })
+        // } else {
+        //   $('.' + obj.id + 'box').animate({
+        //     height: 'auto'
+        //   })
+        // }
+        $('.' + obj.id + 'box').toggleClass("hide");
+      })
+    }
+  }
+  recursive(treeDate, $('#tree'))
+  // 改变右侧区域内容
+  function changeRightView(id) {
+    console.log(id)
+  }
+
+</script>
+</body>
+</html>

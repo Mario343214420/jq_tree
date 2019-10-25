@@ -1,0 +1,63 @@
+html,
+body,
+.main {
+  height: 100%;
+}
+.main .main-wrapper {
+  height: 100%;
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+}
+.main .main-wrapper .tree-container {
+  height: 100%;
+  position: absolute;
+  width: 300px;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+}
+.main .main-wrapper .tree-container .tree-inner {
+  line-height: 36px;
+}
+.main .main-wrapper .tree-container .tree-inner .tree-item {
+  padding: 4px 10px;
+  overflow: hidden;
+  line-height: 30px;
+}
+.main .main-wrapper .tree-container .tree-inner .tree-item .child-tip {
+  margin-right: 8px;
+}
+.main .main-wrapper .tree-container .tree-inner .tree-item .base-name {
+  font-weight: 700;
+}
+.main .main-wrapper .tree-container .tree-inner .tree-item .tree-child {
+  padding-left: 20px;
+}
+.tree-btn {
+  padding-left: 10px;
+  overflow: hidden;
+}
+.toggle-flag {
+  padding: 0 10px;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+[class$="name"] {
+  position: relative;
+}
+[class$="box"] {
+  padding-left: 20px;
+  overflow: hidden;
+}
+[class$="btn"]::before {
+  content: '-';
+  position: absolute;
+  left: -20px;
+  top: 0;
+}
+.hide {
+  height: 0;
+  overflow: hidden;
+}

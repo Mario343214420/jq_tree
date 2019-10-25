@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="../stylus/reset.css">
+  <link rel="stylesheet" href="../lib/ztree/zTreeStyle/zTreeStyle.css">
+  <link rel="stylesheet" href="../stylus/index.css">
+</head>
+<body>
+<div class="main">
+  <div class="main-wrapper">
+
+    <div class="tree-container" id="treeContainer">
+      <div class="title">
+        <span class="title-text">title</span>
+        <span class="title-btn" id="menuBtn">切换</span>
+      </div>
+      <div class="tree-inner">
+        <ul id="treeDemo" class="ztree"></ul>
+      </div>
+    </div>
+
+    <div class="map-container">
+      <div class="map-inner">
+        <div class="tip-bar">
+          <div class="tip-btn" id="tipBtn">
+            切换
+          </div>
+          <span id="btn1">
+            btn1
+          </span>
+          <span id="btn2">
+            btn2
+          </span>
+          <span id="btn3">
+            btn3
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--!!!需更换本地jquery库-->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="../lib/ztree/ztree.js"></script>
+<script type="text/javascript">
+
+  var zTreeObj
+
+  var setting = {}
+
+  var zNodes = [
+
+    {
+      name: 'test1', children: [
+
+        { name: 'test1_1' }, { name: 'test1_2' }]
+    },
+
+    {
+      name: 'test2', children: [
+
+        { name: 'test2_1' }, { name: 'test2_2' }]
+    }
+
+  ]
+
+  $(document).ready(function () {
+
+    zTreeObj = $.fn.zTree.init($('#treeDemo'), setting, zNodes)
+
+  })
+
+  $('#btn1').click(function () {
+    // $.get("testUrl", function(data){
+    //   alert("Data Loaded: " + data);
+    // });
+    alert('点击btn1')
+  })
+  $('#btn2').click(function () {
+    alert('点击btn2')
+  })
+  $('#btn3').click(function () {
+    console.log(3)
+  })
+  var menuBtnFlag = true
+  $('#menuBtn').on("click",function () {
+    menuBtnFlag=!menuBtnFlag
+    !menuBtnFlag?$('#treeContainer').animate({
+      left: "-200px",
+    }, 1000 ):$('#treeContainer').animate({
+      left: "0",
+    }, 1000 )
+  })
+
+  var tipBtnFlag = true
+  $('#tipBtn').on("click",function () {
+    tipBtnFlag=!tipBtnFlag
+    !tipBtnFlag?$('.tip-bar').animate({
+      right: "-220px",
+    }, 1000 ):$('.tip-bar').animate({
+      right: "20px",
+    }, 1000 )
+  })
+</script>
+</body>
+</html>
